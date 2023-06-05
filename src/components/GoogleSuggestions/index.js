@@ -1,3 +1,4 @@
+import {Component} from 'react'
 import SuggestionItem from '../SuggestionItem'
 
 import './index.css'
@@ -8,20 +9,19 @@ class GoogleSuggestions extends Component {
   }
 
   updateSearchInput = value => {
-    this.setState(
-      searchInput: value,
-    )
+    console.log(value)
+    this.setState({searchInput: value})
   }
 
-  onChangeSearchInput = e => {
+  onChangeSearchInput = event => {
     this.setState({
       searchInput: event.target.value,
     })
   }
 
   render() {
-    const {searchInput} = this.props
-    const {suggestionsList} = this.state
+    const {searchInput} = this.state
+    const {suggestionsList} = this.props
     const searchResults = suggestionsList.filter(eachSuggestion =>
       eachSuggestion.suggestion
         .toLowerCase()
@@ -53,7 +53,7 @@ class GoogleSuggestions extends Component {
             </div>
             <ul className="suggestions-list">
               {searchResults.map(eachSuggestion => (
-                <suggestionItem
+                <SuggestionItem
                   key={eachSuggestion.id}
                   suggestionDetails={eachSuggestion}
                   updateSearchInput={this.updateSearchInput}
